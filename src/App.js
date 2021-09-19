@@ -1,8 +1,8 @@
 import './App.css';
-import Controller from './Components/Controller';
-import Grid from './Components/Grid';
+import Controller from './components/Controller';
+import Grid from './components/Grid';
 import { useState } from 'react';
-import Settings from './Settings';
+import Settings from './components/Settings';
 
 function App() {
 

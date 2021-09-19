@@ -18,6 +18,8 @@ const Controller = ({ coordinates, setCoordinates, dimensions, direction, setDir
       case 'up':
         setDirection('right');
         break;
+      default: 
+        setDirection('right');
     }
   }
 

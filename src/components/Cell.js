@@ -1,4 +1,4 @@
-import Arrow from './arrow.svg';
+import arrow from '.././assets/arrow.svg';
 
 const Cell = ({x, y, direction}) => {
   
@@ -16,7 +16,7 @@ const Cell = ({x, y, direction}) => {
   if (direction) {
     return (
       <td id={`${x}-${y}`} style={cellStyle}>
-        <img className={`arrow-${direction}`} src={Arrow} style={arrowStyle} alt="arrow" />
+        <img className={`arrow-${direction}`} src={arrow} style={arrowStyle} alt="arrow" />
       </td>
     );
   }
