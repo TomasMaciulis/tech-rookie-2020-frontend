@@ -1,21 +1,38 @@
 const Settings = ({ setDimensions, dimensions, coordinates, setCoordinates}) => {
-  const divStyle = {
+
+  const minValue = 1;
+
+  const maxValue = 25;
+
+  const componentStyle = {
     width: '8em',
     display: 'flex',
     justifyContent: 'space-between',
     margin: '0.5em'
   }
 
-  const textStyle = {
+  const inputStyle = {
     width: '4em',
   }
 
   const input = (id, value, onChange) => {
-    return <input id = {id} type = 'number' min = '1' max = '25' style = {textStyle} value = {value} onChange = {onChange}/>
+    return <input id = {id} type = 'number' min = {minValue} max = {maxValue} style = {inputStyle} value = {value} onChange = {onChange}/>
   }
 
-  const updateWidth = (val) => {
-    const width = Number.parseInt(val.target.value);
+  const parseInput = (input) => {
+    let value = Number.parseInt(input.target.value);
+
+    if (!value || value < minValue) {
+      value = minValue;
+    } else if (value > maxValue) {
+      value = maxValue;
+    }
+
+    return value;
+  }
+
+  const updateWidth = (input) => {
+    const width = parseInput(input);
 
     setDimensions({ ...dimensions, width: width });
 
@@ -24,18 +41,18 @@ const Settings = ({ setDimensions, dimensions, coordinates, setCoordinates}) => 
     }
   }
 
-  const updateHeight = (val) => {
-    const height = Number.parseInt(val.target.value);
+  const updateHeight = (input) => {
+    const height = parseInput(input);
 
     setDimensions({ ...dimensions, height: height });
-
+    
     if (coordinates.y > height - 1) {
       setCoordinates({ ...coordinates, y: height - 1 })
     }
   }
 
   return (
-    <div style = {divStyle}>
+    <div style = {componentStyle}>
       {input('width', dimensions.width, updateWidth)}
       {input('height', dimensions.height, updateHeight)}
     </div>
